@@ -7,7 +7,7 @@
 
 QR code generation tools for MCP-enabled LLM clients.
 
-A Model Context Protocol (MCP) server for generating QR codes. Built with Go, the [MCP Go SDK](https://github.com/modelcontextprotocol/go-sdk), and [go-qrcode](https://github.com/yeqown/go-qrcode/v2), qrkit enables AI assistants to generate QR codes from any data.
+A Model Context Protocol (MCP) server for generating QR codes. Built with Go, the [MCP Go SDK](https://github.com/modelcontextprotocol/go-sdk), and [go-qrcode](https://github.com/yeqown/go-qrcode), qrkit enables AI assistants to generate QR codes from any data.
 
 ## Features
 
@@ -127,5 +127,5 @@ Contributions are welcome!
 
 Built with:
 
-- [github.com/yeqown/go-qrcode/v2](https://github.com/yeqown/go-qrcode) - QR code generation
+- [github.com/yeqown/go-qrcode](https://github.com/yeqown/go-qrcode) - QR code generation
 - [github.com/modelcontextprotocol/go-sdk](https://github.com/modelcontextprotocol/go-sdk) - MCP implementation
