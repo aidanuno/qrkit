@@ -1,0 +1,74 @@
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+    - go test ./...
+
+builds:
+  - id: qrkit
+    binary: qrkit
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X main.Version={{.Version}}
+    main: .
+
+archives:
+  - id: qrkit
+    formats: ["binary"]
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- .Version }}_
+      {{- .Os }}_
+      {{- .Arch }}
+  - files:
+      - none* #package only the binary https://goreleaser.com/customization/archive/?h=tar.gz#packaging-only-the-binaries
+checksum:
+  name_template: "checksums.txt"
+  algorithm: sha256
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^ci:"
+      - "^chore:"
+      - Merge pull request
+      - Merge branch
+  groups:
+    - title: Features
+      regexp: "^feat:"
+    - title: Bug Fixes
+      regexp: "^fix:"
+    - title: Security
+      regexp: "^sec:"
+    - title: Others
+      order: 999
+
+release:
+  github:
+    owner: aidanuno
+    name: qrkit
+  draft: false
+  prerelease: auto
+  mode: replace
+  header: |
+    ## qrkit {{.Version}}
+
+    QR code generation tools for MCP-enabled LLM clients
+  footer: |
+    **Full Changelog**: https://github.com/aidanuno/qrkit/compare/{{.PreviousTag}}...{{.Tag}}
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
