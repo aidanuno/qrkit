@@ -5,9 +5,12 @@ import (
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
+// Version is set via ldflags during build
+var Version = "dev"
+
 func CreateMCPServer() *mcp.Server {
 	// Create a server
-	server := mcp.NewServer(&mcp.Implementation{Name: "qrkit", Version: "0.1.0"}, nil)
+	server := mcp.NewServer(&mcp.Implementation{Name: "qrkit", Version: Version}, nil)
 	// Add available tools to the server
 	tools.AddGenerateQRCodeTool(server)
 	return server

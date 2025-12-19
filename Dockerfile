@@ -13,7 +13,10 @@ RUN go mod download && go mod verify
 # Copy source code
 COPY . .
 
-RUN CGO_ENABLED=0 go build -o qrkit
+# Accept version as build argument
+ARG VERSION=dev
+
+RUN CGO_ENABLED=0 go build -ldflags="-s -w -X github.com/aidanuno/qrkit/internal/server.Version=${VERSION}" -o qrkit
 
 # Stage 2: Minimal runtime image
 FROM scratch
