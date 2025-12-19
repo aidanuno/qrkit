@@ -26,13 +26,13 @@ func generateQRCodeHandler(ctx context.Context, args GenerateQRCodeArgs) (*mcp.C
 	}
 
 	// Generate QR code
-	qrcode, err := qrcode.New(args.RawQRData)
+	qrcodeResult, err := qrcode.New(args.RawQRData)
 	if err != nil {
 		return nil, err
 	}
 
 	// Convert to bytes
-	bytes, err := qr.QRCodeToBytes(qrcode)
+	bytes, err := qr.CodeToBytes(qrcodeResult)
 	if err != nil {
 		return nil, err
 	}
