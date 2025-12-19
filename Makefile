@@ -17,7 +17,8 @@ coverage:
 lint:	
 	golangci-lint run
 fmt:
-	goimports -w . || gofmt -s -w .
+	goimports -w .
+	gofmt -s -w .
 deps:
 	go mod download
 	go mod verify
